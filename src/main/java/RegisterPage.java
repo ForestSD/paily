@@ -14,7 +14,9 @@ public class RegisterPage {
 
     public WebDriver driver;
     public Faker faker = new Faker();
-    public HashMap<String, String> map = new HashMap<String, String>();
+    private Map<String, String> map = new HashMap<String, String>();
+    public static String email;
+    public static String password;
 
     public RegisterPage(WebDriver driver) {
         this.driver = driver;
@@ -47,11 +49,13 @@ public class RegisterPage {
     }
 
     public void read(){
-        Map<String, String> mapFromFile = getHashMapFromTextFile();
+        map = getHashMapFromTextFile();
 
         //iterate over HashMap entries
-        for(Map.Entry<String, String> entry : mapFromFile.entrySet()){
-            System.out.println( entry.getKey() + " => " + entry.getValue() );
+        for(Map.Entry<String, String> entry : map.entrySet()){
+            email = entry.getKey();
+            password = entry.getValue();
+            System.out.println(entry.getKey() + entry.getValue() );
         }
     }
 
@@ -81,4 +85,9 @@ public class RegisterPage {
         return mapFileContents;
 
     }
+
+    public Map<String, String> getMap() {
+        return map;
+    }
+
 }

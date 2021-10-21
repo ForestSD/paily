@@ -16,9 +16,9 @@ public class LoginPage {
     public void loginForm(WebDriver driver){
         driver.findElement(By.xpath("//a[contains(@class, 'login')]")).click();
         wait(10);
-        clickAndSaveVariableInInput("#label_email", "testUt6@tempr.email");
+        clickAndSaveVariableInInput("#label_email", RegisterPage.email);
         wait(20);
-        clickAndSaveVariableInInput("#label_password", "gx1rU4bt");
+        clickAndSaveVariableInInput("#label_password", RegisterPage.password);
         wait(5);
         driver.findElement(By.cssSelector("button > span")).click();
     }

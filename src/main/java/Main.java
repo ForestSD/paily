@@ -16,7 +16,11 @@ public class Main {
 
     public static void main(String[] args) {
         RegisterPage registerPage = new RegisterPage(driver);
-        //driver.get("https://paily.io/en");
+        LoginPage loginPage = new LoginPage(driver);
+        CreateNewInvoice newInvoice = new CreateNewInvoice(driver);
+        driver.get("https://paily.io/en");
+        driver.manage().window().maximize();
+        driver.findElement(By.cssSelector("a.login"));
         //driver.findElement(By.cssSelector("a.register")).click();
 
         //registerPage.registerNewUser();
@@ -24,12 +28,16 @@ public class Main {
         //createNewFile();
         createNewFile();
         registerPage.read();
+        loginPage.loginForm(driver);
+        wait(20);
+        newInvoice.createNewInvoice();
         //registerPage.registerNewUser();
 
     }
 
     public static void createNewFile() {
         String fileSeparator = System.getProperty("file.separator");
+
         file = new File("emailsAndPassword.txt");
         try {
             if (file.createNewFile()) {
@@ -60,5 +68,9 @@ public class Main {
 
     public static File getFile() {
         return file;
+    }
+
+    public static void wait(int value){
+        new WebDriverWait(driver, value);
     }
 }
