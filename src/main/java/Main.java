@@ -25,6 +25,7 @@ public class Main {
         createNewFile();
         registerPage.read();
         //registerPage.registerNewUser();
+
     }
 
     public static void createNewFile() {
