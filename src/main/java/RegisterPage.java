@@ -1,14 +1,14 @@
 import com.github.javafaker.Faker;
-import com.github.javafaker.Name;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 public class RegisterPage {
 
@@ -50,12 +50,9 @@ public class RegisterPage {
 
     public void read(){
         map = getHashMapFromTextFile();
-
-        //iterate over HashMap entries
         for(Map.Entry<String, String> entry : map.entrySet()){
             email = entry.getKey();
             password = entry.getValue();
-            System.out.println(entry.getKey() + entry.getValue() );
         }
     }
 

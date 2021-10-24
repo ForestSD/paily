@@ -1,16 +1,14 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 public class Main {
 
-    public static String setProperty = System.setProperty("webdriver.chrome.driver", "C:\\Users\\PandaTeam\\IdeaProjects\\paily\\drivers\\chromedriver.exe");
+    public static String setProperty = System.setProperty("webdriver.chrome.driver", "C:\\Users\\Артем\\IdeaProjects\\paily\\drivers\\chromedriver.exe");
     public static WebDriver driver = new ChromeDriver();
     private static File file;
 
@@ -22,7 +20,6 @@ public class Main {
         driver.manage().window().maximize();
         driver.findElement(By.cssSelector("a.login"));
         //driver.findElement(By.cssSelector("a.register")).click();
-
         //registerPage.registerNewUser();
         //driver.get("https://tempr.email/");
         //createNewFile();
