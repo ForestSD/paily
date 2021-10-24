@@ -34,6 +34,7 @@ public class CreateNewInvoice {
             }
         }
 
+
         findByCssClickInButton("button > span");
         inputValidParameterByName("names_services", faker.name().username());
         inputValidParameterByName("time", 1);
