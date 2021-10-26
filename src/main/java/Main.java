@@ -1,3 +1,5 @@
+import com.github.javafaker.Faker;
+import com.github.javafaker.Name;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,26 +10,26 @@ import java.io.IOException;
 
 public class Main {
 
-    public static String setProperty = System.setProperty("webdriver.chrome.driver", "C:\\Users\\HP\\IdeaProjects\\paily\\drivers\\chromedriver.exe");
+    public static String setProperty = System.setProperty("webdriver.chrome.driver", "C:\\Users\\PandaTeam\\IdeaProjects\\paily\\drivers\\chromedriver.exe");
     public static WebDriver driver = new ChromeDriver();
     private static File file;
 
     public static void main(String[] args) {
         RegisterPage registerPage = new RegisterPage(driver);
         LoginPage loginPage = new LoginPage(driver);
+        Manager manager = new Manager(driver);
         CreateNewInvoice newInvoice = new CreateNewInvoice(driver);
         driver.get("https://paily.io/en");
         driver.manage().window().maximize();
         driver.findElement(By.cssSelector("a.login"));
-        //driver.findElement(By.cssSelector("a.register")).click();
-        //registerPage.registerNewUser();
-        //driver.get("https://tempr.email/");
-        //createNewFile();
         createNewFile();
+        Faker faker = new Faker();
+        Name name = faker.name();
         registerPage.read();
         loginPage.loginForm(driver);
         wait(20);
-        newInvoice.createNewInvoice();
+        newInvoice.createNewInvoice(name.username(), name.fullName(),faker.address().streetName(),
+                faker.internet().emailAddress(),name.fullName() );
         //registerPage.registerNewUser();
 
     }

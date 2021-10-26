@@ -13,25 +13,22 @@ public class LoginPage {
         this.driver = driver;
     }
 
+    public Manager manager;
+
     public void loginForm(WebDriver driver){
+        driver.findElement(By.cssSelector("a.login"));
         driver.findElement(By.xpath("//a[contains(@class, 'login')]")).click();
-        wait(10);
         clickAndSaveVariableInInput("#label_email", RegisterPage.email);
-        wait(20);
         clickAndSaveVariableInInput("#label_password", RegisterPage.password);
-        wait(5);
         driver.findElement(By.cssSelector("button > span")).click();
     }
 
-    public void wait(int value){
-        new WebDriverWait(driver, value);
-    }
 
     public void clickAndSaveVariableInInput(String by, String variable){
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         WebElement label_email = driver.findElement(By.cssSelector(by));
         label_email.click();
         label_email.sendKeys(variable);
     }
+
 
 }
