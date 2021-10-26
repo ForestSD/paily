@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class Main {
 
-    public static String setProperty = System.setProperty("webdriver.chrome.driver", "C:\\Users\\Артем\\IdeaProjects\\paily\\drivers\\chromedriver.exe");
+    public static String setProperty = System.setProperty("webdriver.chrome.driver", "C:\\Users\\HP\\IdeaProjects\\paily\\drivers\\chromedriver.exe");
     public static WebDriver driver = new ChromeDriver();
     private static File file;
 
