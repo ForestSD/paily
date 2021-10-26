@@ -10,11 +10,12 @@ import java.io.IOException;
 
 public class Main {
 
-    public static String setProperty = System.setProperty("webdriver.chrome.driver", "C:\\Users\\PandaTeam\\IdeaProjects\\paily\\drivers\\chromedriver.exe");
-    public static WebDriver driver = new ChromeDriver();
+    public static String setProperty = System.setProperty("webdriver.chrome.driver", "C:\\Users\\Артем\\IdeaProjects\\paily\\drivers\\chromedriver.exe");
+    public static WebDriver driver;
     private static File file;
 
     public static void main(String[] args) {
+        driver = new ChromeDriver();
         RegisterPage registerPage = new RegisterPage(driver);
         LoginPage loginPage = new LoginPage(driver);
         Manager manager = new Manager(driver);

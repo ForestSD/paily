@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -12,16 +13,18 @@ import java.util.List;
 public class CreateNewInvoice {
 
     private WebDriver driver;
+    private Wait<WebDriver> wait;
 
     public CreateNewInvoice(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, 5, 200);
     }
 
     public void createNewInvoice(String username, String fullName, String street, String email, String servicesName){
         findByCssClickInButton("div.view-more > a");
         findByCssClickInButton("#butId");
         inputValidParameter("#newprojectname", username);
-        findByCssClickInButton("button > span");
+        findByCssClickInButton("div.newProject > button");
         inputValidParameterByName("fio", fullName);
         inputValidParameterByName("address", street);
         inputValidParameterByName("email", email);
@@ -65,7 +68,8 @@ public class CreateNewInvoice {
     }
 
     public  void findByCssClickInButton(String selector){
-        driver.findElement(By.cssSelector(selector)).click();
+        WebElement label = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(selector)));
+        label.click();
     }
 
 }

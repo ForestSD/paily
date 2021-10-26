@@ -1,6 +1,8 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
@@ -8,9 +10,11 @@ import java.util.concurrent.TimeUnit;
 public class LoginPage {
 
     private WebDriver driver;
+    private Wait<WebDriver> wait;
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, 5, 200);
     }
 
     public Manager manager;
@@ -25,10 +29,11 @@ public class LoginPage {
 
 
     public void clickAndSaveVariableInInput(String by, String variable){
-        WebElement label_email = driver.findElement(By.cssSelector(by));
-        label_email.click();
-        label_email.sendKeys(variable);
-    }
+        WebElement label = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(by)));
+        label.click();
+        label.sendKeys(variable);
 
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("username"))).sendKeys(account.getUsername());
+    }
 
 }

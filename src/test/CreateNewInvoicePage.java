@@ -5,6 +5,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.io.File;
 
@@ -18,18 +19,21 @@ public class CreateNewInvoicePage {
 
     @BeforeClass
     public static void beforeAll(){
-        String string = System.setProperty("webdriver.chrome.driver", "C:\\Users\\PandaTeam\\IdeaProjects\\paily\\drivers\\chromedriver.exe");
+        String string = System.setProperty("webdriver.chrome.driver", "C:\\Users\\Артем\\IdeaProjects\\paily\\drivers\\chromedriver.exe");
     }
 
     @Before
     public void before(){
-        Manager manager = new Manager(driver);
-        driver = new ChromeDriver();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("force-device-scale-factor=0.75");
+        chromeOptions.addArguments("high-dpi-support=0.75");
+        driver = new ChromeDriver(chromeOptions);
         driver.get("https://paily.io/en");
         driver.manage().window().maximize();
         registerPage = new RegisterPage(driver);
         newInvoice = new CreateNewInvoice(driver);
         loginPage = new LoginPage(driver);
+        Main.createNewFile();
     }
 
     @Test
