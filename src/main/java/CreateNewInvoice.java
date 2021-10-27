@@ -1,13 +1,10 @@
-import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.List;
 
 public class CreateNewInvoice {
@@ -41,30 +38,34 @@ public class CreateNewInvoice {
         inputValidParameterByName("time", 1);
         inputValidParameterByName("price", 100);
         findByCssClickInButton("a > span");
-        WebElement element = driver.findElement(By.cssSelector("div > div.newProject > button"));
+        /*WebElement element = driver.findElement(By.cssSelector("div > div.newProject > button"));
         Actions actions = new Actions(driver);
         actions.moveToElement(element);
         actions.perform();
         new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.elementToBeClickable(By.cssSelector("div.newProject > button"))).click();
+                .until(ExpectedConditions.elementToBeClickable(By.cssSelector("div.newProject > button"))).click();*/
+        findByCssClickInButton("div > div.newProject > button");
+        WebElement finalButton = driver.findElement(By.cssSelector("div > div:nth-child(1) > button"));
+        wait.until(ExpectedConditions.visibilityOf(finalButton));
+        findByCssClickInButton("div > div:nth-child(1) > button");
     }
 
     public  void inputValidParameter(String cssSelector, String fakerName){
-        WebElement name = driver.findElement(By.cssSelector(cssSelector));
-        name.click();
-        name.sendKeys(fakerName);
+        WebElement label = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(cssSelector)));
+        label.click();
+        label.sendKeys(fakerName);
     }
 
     public  void inputValidParameterByName(String nameSelector, String fakerName){
-        WebElement name = driver.findElement(By.name(nameSelector));
-        name.click();
-        name.sendKeys(fakerName);
+        WebElement label = wait.until(ExpectedConditions.elementToBeClickable(By.name(nameSelector)));
+        label.click();
+        label.sendKeys(fakerName);
     }
 
     public  void inputValidParameterByName(String nameSelector, int number){
-        WebElement name = driver.findElement(By.name(nameSelector));
-        name.click();
-        name.sendKeys(String.valueOf(number));
+        WebElement label = wait.until(ExpectedConditions.elementToBeClickable(By.name(nameSelector)));
+        label.click();
+        label.sendKeys(String.valueOf(number));
     }
 
     public  void findByCssClickInButton(String selector){

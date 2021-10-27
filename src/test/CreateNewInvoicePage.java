@@ -1,8 +1,6 @@
 import com.github.javafaker.Faker;
 import com.github.javafaker.Name;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -19,7 +17,7 @@ public class CreateNewInvoicePage {
 
     @BeforeClass
     public static void beforeAll(){
-        String string = System.setProperty("webdriver.chrome.driver", "C:\\Users\\Артем\\IdeaProjects\\paily\\drivers\\chromedriver.exe");
+        String string = System.setProperty("webdriver.chrome.driver", "C:\\Users\\PandaTeam\\IdeaProjects\\paily\\drivers\\chromedriver.exe");
     }
 
     @Before
@@ -33,17 +31,42 @@ public class CreateNewInvoicePage {
         registerPage = new RegisterPage(driver);
         newInvoice = new CreateNewInvoice(driver);
         loginPage = new LoginPage(driver);
-        Main.createNewFile();
+    }
+
+    @After
+    @Test
+    public void loginInPage(){
+        registerPage.read();
+        loginPage.loginForm(driver, "testUser2@tempr.email", "3OJT6j8c");
+        driver.quit();
     }
 
     @Test
+    public void nullValueInputLoginPage(){
+        registerPage.read();
+        loginPage.loginForm(driver, "", "");
+        Assert.fail("Значение null");
+        driver.quit();
+    }
+
+    @Test
+    public void notValidEmailLoginPage(){
+        registerPage.read();
+        loginPage.loginForm(driver, "testUser2", "3OJT6j8c");
+        Assert.fail("Не верный email");
+        driver.quit();
+    }
+
+
+    /*@Test
     public void createInvoice(){
         registerPage.read();
-        loginPage.loginForm(driver);
+        loginPage.loginForm(driver, "testUser2@tempr.email", "3OJT6j8c");
         Faker faker = new Faker();
         Name name = faker.name();
         newInvoice.createNewInvoice(name.username(), name.fullName(),faker.address().streetName(),
                 faker.internet().emailAddress(),name.fullName());
-    }
+        driver.quit();
+    }*/
 
 }

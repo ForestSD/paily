@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class Main {
 
-    public static String setProperty = System.setProperty("webdriver.chrome.driver", "C:\\Users\\Артем\\IdeaProjects\\paily\\drivers\\chromedriver.exe");
+    public static String setProperty = System.setProperty("webdriver.chrome.driver", "C:\\Users\\PandaTeam\\IdeaProjects\\paily\\drivers\\chromedriver.exe");
     public static WebDriver driver;
     private static File file;
 
@@ -27,7 +27,7 @@ public class Main {
         Faker faker = new Faker();
         Name name = faker.name();
         registerPage.read();
-        loginPage.loginForm(driver);
+        //loginPage.loginForm(driver);
         wait(20);
         newInvoice.createNewInvoice(name.username(), name.fullName(),faker.address().streetName(),
                 faker.internet().emailAddress(),name.fullName() );
